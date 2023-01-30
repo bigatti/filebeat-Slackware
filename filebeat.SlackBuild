@@ -53,6 +53,7 @@ fi
 TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
+UNZIP="data"
 
 if [ "$ARCH" = "x86_64" ]; then
   DEBARCH="amd64"
@@ -66,10 +67,14 @@ set -e
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
+chown -R root:root $TMP $PKG $OUTPUT
 cd $PKG
-ar -x $CWD/filebeat-${VERSION}-${DEBARCH}.deb data.tar.gz 
-tar xvzf data.tar.gz
+rm -rf $PRGNAM-$VERSION
+rm -rf $UNZIP
+ar -x $CWD/filebeat-${VERSION}-${DEBARCH}.deb $UNZIP.tar.gz 
+tar xvzf $UNZIP.tar.gz
 chown -R root:root .
+
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
   -o -perm 511 \) -exec chmod 755 {} \; -o \
@@ -77,7 +82,6 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a $CWD/README $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install

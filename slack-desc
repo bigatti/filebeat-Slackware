@@ -5,7 +5,15 @@
 # You must make exactly 11 lines for the formatting to be correct.  It's also
 # customary to leave one space after the ':' except on otherwise blank lines.
 
-          |-----handy-ruler------------------------------------------------------|
-filebeat: Whether you’re collecting from security devices, cloud, containers,
-filebeat: hosts, or OT, Filebeat helps you keep the simple things simple by
-filebeat: offering a lightweight way to forward and centralize logs and files. 
+        |-----handy-ruler------------------------------------------------------|
+filebeat: filebeat (short desc)
+filebeat: Filebeat is a lightweight shipper for forwarding and centralizing
+filebeat: log data. Installed as an agent on your servers, Filebeat monitors 
+filebeat: the log files or locations  you specify, collects log events, 
+filebeat: andforwards them either to Elasticsearch or Logstash for indexing
+filebeat:
+filebeat: Here's how Filebeat works: When you start Filebeat,
+filebeat: it starts one or more inputs that look in the locations you've
+filebeat: specified for log data. For each log that Filebeat locates,
+filebeat: starts a harvester
+filebeat:

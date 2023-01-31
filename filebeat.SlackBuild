@@ -83,7 +83,8 @@ find -L . \
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
-
+rm -rf $PKG/usr/share/doc
+rm -rf $PKG/$UNZIP.tar.gz
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
 

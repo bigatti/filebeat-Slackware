@@ -23,4 +23,3 @@ preserve_perms() {
 }
 
 preserve_perms etc/rc.d/rc.filebeat.new
-config etc/rc.d/rc.filebeat.new

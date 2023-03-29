@@ -87,13 +87,14 @@ cat $PKG/usr/share/$PRGNAM/NOTICE.txt > $PKG/usr/doc/$PRGNAM-$VERSION/NOTICE.txt
 rm -rf $PKG/usr/share/doc $PKG/$UNZIP.tar.gz $PKG/lib
 mkdir -p $PKG/install
 
-mkdir -p $PKG/usr/share/$PRGNAM/bin
+# mkdir -p $PKG/usr/share/$PRGNAM/bin
 # cp $PKG/usr/bin/* $PKG/usr/share/$PRGNAM/bin
 
-mkdir -p $PKG/usr/share/$PRGNAM/lib
-cp -r $CWD/lib/* $PKG/usr/share/$PRGNAM/lib
+# mkdir -p $PKG/usr/share/$PRGNAM/lib
+# cp -r $PKG/lib/* $PKG/usr/share/$PRGNAM/lib
 
-cat $PKG/etc/rc.d/filebeat > $PKG/etc/rc.d/filebeat.new
+mkdir -p $PKG/etc/rc.d/
+cat $PKG/etc/init.d/filebeat > $PKG/etc/rc.d/rc.filebeat.new
 
 cat $CWD/slack-desc > $PKG/install/slack-desc
 cat $CWD/doinst.sh > $PKG/install/doinst.sh

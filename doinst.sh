@@ -22,5 +22,5 @@ preserve_perms() {
   config $NEW
 }
 
-config etc/rc.d/rc.filebeat.new
 preserve_perms etc/rc.d/rc.filebeat.new
+config etc/rc.d/rc.filebeat.new

@@ -69,8 +69,7 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 chown -R root:root $TMP $PKG $OUTPUT
 cd $PKG
-rm -rf $PRGNAM-$VERSION
-rm -rf $UNZIP
+rm -rf $PRGNAM-$VERSION $UNZIP
 ar -x $CWD/filebeat-${VERSION}-${DEBARCH}.deb $UNZIP.tar.gz 
 tar xvzf $UNZIP.tar.gz
 chown -R root:root .
@@ -83,12 +82,21 @@ find -L . \
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
-cat $PKG/usr/share/filebeat/LICENSE.txt > $PKG/usr/doc/$PRGNAM-$VERSION/LICENSE.txt
-cat $PKG/usr/share/filebeat/NOTICE.txt > $PKG/usr/doc/$PRGNAM-$VERSION/NOTICE.txt
-rm -rf $PKG/usr/share/doc
-rm -rf $PKG/$UNZIP.tar.gz
+cat $PKG/usr/share/$PRGNAM/LICENSE.txt > $PKG/usr/doc/$PRGNAM-$VERSION/LICENSE.txt
+cat $PKG/usr/share/$PRGNAM/NOTICE.txt > $PKG/usr/doc/$PRGNAM-$VERSION/NOTICE.txt
+rm -rf $PKG/usr/share/doc $PKG/$UNZIP.tar.gz $PKG/lib
 mkdir -p $PKG/install
+
+mkdir -p $PKG/usr/share/$PRGNAM/bin
+# cp $PKG/usr/bin/* $PKG/usr/share/$PRGNAM/bin
+
+mkdir -p $PKG/usr/share/$PRGNAM/lib
+cp -r $CWD/lib/* $PKG/usr/share/$PRGNAM/lib
+
+cat $PKG/etc/rc.d/filebeat > $PKG/etc/rc.d/filebeat.new
+
 cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
 
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

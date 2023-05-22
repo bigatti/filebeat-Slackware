@@ -66,13 +66,12 @@ fi
 set -e
 
 rm -rf $PKG
-mkdir -p $TMP $PKG $OUTPUT
-chown -R root:root $TMP $PKG $OUTPUT
+mkdir -p $TMP $PKG
+chown -R root:root $TMP $PKG
 cd $PKG
 rm -rf $PRGNAM-$VERSION $UNZIP
 ar -x $CWD/filebeat-${VERSION}-${DEBARCH}.deb $UNZIP.tar.gz 
 tar xvzf $UNZIP.tar.gz
-chown -R root:root .
 
 find -L . \
  \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
